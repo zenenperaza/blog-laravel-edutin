@@ -2,10 +2,11 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class WelcomeEmail extends Notification
 {
@@ -14,9 +15,9 @@ class WelcomeEmail extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -32,12 +33,13 @@ class WelcomeEmail extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
-    {
+    public function toMail($notifiable)
+        {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('Hola, '. $this->user->full_name)
+                    ->line('nos complace darte la bienvenida a nuestro blog, ahora que estas registrado puedes reaizar comentarios en los articulos del blog')
+                    ->action('Ir al Blog', url('/'))
+                    ->line('Gracias por ser parte de nuestra comunidad!');
     }
 
     /**
