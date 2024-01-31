@@ -14,8 +14,8 @@
                         </div>
                     @endif
                     <pre>
-                    {{ var_dump($navbar) }}
-                </pre>
+                    {{ var_dump($categories) }}
+                    </pre>
                 </div>
             </div>
         </div>
