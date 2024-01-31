@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <pre>
-                    {{ var_dump($categories) }}
+                    {{ var_dump($articles) }}
                     </pre>
                 </div>
             </div>
