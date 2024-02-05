@@ -34,7 +34,9 @@ class HomeController extends Controller
             ['is_featured', '1']
         ])->paginate(3);
         
-        return view('home.index', compact('articles', 'navbar'));
+        // return view('home.index', compact('articles', 'navbar'));
+        
+        return view('home', compact('articles', 'navbar'));
     }
 
     // todas las categorias
