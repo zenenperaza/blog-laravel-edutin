@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,13 @@ Route::resource('articles', ArticleController::class)->except('show')->names('ar
 
 Route::resource('categories', CategoryController::class)->except('show')->names('categories');
 
+// Comentarios
+Route::resource('comments', CommentController::class)
+            ->only('index', 'destroy')
+            ->names('comments');
+
+// guardar comentarios
+Route::get('/comment', [CommentController::class, 'store'])->name('comments.store');
 // ver articulos
 Route::get('article/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
